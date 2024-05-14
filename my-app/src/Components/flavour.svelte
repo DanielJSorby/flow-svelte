@@ -94,6 +94,7 @@
             </div>
         </div>
     </div>
+    <button class="go-back" on:click={goBack}>&lt;</button>
 {:else}
     <p>No flavour selected</p>
     <button on:click={goBack}>&lt;</button>
@@ -108,8 +109,12 @@
 	justify-content: center;
 }
 
-.bottom .flav-desc {
-    font-size: 30px;
+.flavour p {
+	font-size: 50px;
+}
+
+.flavour-container.bottom .flavour .flav-desc p{
+    font-size: 20px;
 }
 
 .flavour {
@@ -122,7 +127,7 @@
 }
 
 .flavour h1 {
-	font-size: 80px;
+	font-size: 5vw;
 }
 
 .flav-pic {
@@ -134,10 +139,6 @@
 	width: 80%;
 }
 
-.flavour p {
-	font-size: 50px;
-}
-
 .flav-nutritions {
 	display: flex;
 	flex-direction: row;
@@ -147,6 +148,11 @@
 
 .flav-nutritions p {
 	padding-right: 20px;
+    font-size: 3vw;
+}
+
+p.flav-ingredients{
+    font-size: 3vw;
 }
 
 .flavour button {
@@ -214,5 +220,27 @@
 
 .flavour-container .flavour .flav-desc {
     font-weight: 300;
+}
+
+.go-back {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 50px;
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 100%;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    font-family: "montserrat", sans-serif;
+    font-weight: 500;
+    color: #000;
+    height: 100px;
+    width: 100px;
+}
+
+.flav-text {
+    width: 33%;
 }
 </style>
