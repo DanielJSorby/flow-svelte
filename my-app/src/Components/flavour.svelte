@@ -1,0 +1,218 @@
+<script>
+    import { onMount } from 'svelte';
+    export let flavour;
+    import { selectedFlavour } from '../lib/store.js'; // Import the store
+    let currentFlavour;
+    let amount = 1;
+    function lessAmount() {
+        if (amount > 1) {
+            amount -= 1;
+        }
+    }
+
+    function addAmount() {
+        if (amount < 99) {
+            amount += 1;
+        }
+    }
+
+    onMount(() => {
+        const storedFlavours = JSON.parse(localStorage.getItem('flavours') || 'null');
+        console.log('storedFlavours:', storedFlavours); // Log storedFlavours
+        console.log('flavour:', flavour); // Log flavour
+        if (storedFlavours) {
+            const matchingFlavour = storedFlavours.find(f => f.name === flavour);
+            console.log('matchingFlavour:', matchingFlavour); // Log matchingFlavour
+            if (matchingFlavour) {
+                currentFlavour = matchingFlavour;
+            }
+        }
+    });
+
+    function goBack() {
+        selectedFlavour.set('Flavours'); // Set selectedFlavour back to 'Flavours'
+    }
+</script>
+
+{#if currentFlavour}
+    <div class="flavour-container top {currentFlavour.name}" style="background-color: {currentFlavour.mainColor}; color: {currentFlavour.secondColor}">
+        <div class="flavour">
+            <div class="flav-text">
+                <h1 class="flav-name">{currentFlavour.name}</h1>
+                <div class="flav-desc">
+                    <p class="flav-ingredients">
+                        {@html currentFlavour.ingredients ? currentFlavour.ingredients.join('<br>') : 'No ingredients listed'}
+                    </p>
+                    <div class="line flav-line" style="background-color: {currentFlavour.secondColor}"></div>
+                    <div class="flav-nutritions">
+                        <p class="flav-numbers">{currentFlavour.coffeine}<br>{currentFlavour.vitamin}</p>
+                        <p class="flav-names">Coffeine<br>Vitamin {currentFlavour.vitaminType}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="flav-image">
+                <img src="{currentFlavour.image}" alt="{currentFlavour.name}" class="flav-pic">
+            </div>
+            <div>
+                <h1 class="flav-price">{currentFlavour.currency} {currentFlavour.price + ".00"}</h1>
+                <p>In stock</p>
+                <div class="line flav-line" style="background-color: {currentFlavour.secondColor}"></div>
+                <div class="amount-and-cart">
+                    <div class="amount">
+                        <button class="less" on:click={lessAmount}>-</button>
+                        <p>{amount}</p>
+                        <button class="add" on:click={addAmount}>+</button>
+                    </div>
+                    <div class="add-to-cart"><button>Add to cart &check;</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="flavour-container bottom {currentFlavour.name}" style="background-color: {currentFlavour.secondColor}; color: {currentFlavour.mainColor}">
+        <div class="flavour">
+            <div class="flav-text">
+                <h1 class="flav-name">{currentFlavour.name}</h1>
+                <div class="flav-desc">
+                    <p>{currentFlavour.description}</p>
+                </div>
+            </div>
+            <div class="flav-image">
+                <img src="{currentFlavour.image}" alt="{currentFlavour.name}" class="flav-pic">
+            </div>
+            <div>
+                <h1 class="flav-price">{currentFlavour.currency} {currentFlavour.price + ".00"}</h1>
+                <p>In stock</p>
+                <div class="line flav-line" style="background-color: {currentFlavour.secondColor}"></div>
+                <div class="amount-and-cart">
+                    <div class="amount">
+                        <button class="less" on:click={lessAmount}>-</button>
+                        <p>{amount}</p>
+                        <button class="add" on:click={addAmount}>+</button>
+                    </div>
+                    <div class="add-to-cart"><button>Add to cart &check;</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{:else}
+    <p>No flavour selected</p>
+    <button on:click={goBack}>&lt;</button>
+{/if}
+
+<style>
+    .flavour-container {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.bottom .flav-desc {
+    font-size: 30px;
+}
+
+.flavour {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+    padding: 2%;
+}
+
+.flavour h1 {
+	font-size: 80px;
+}
+
+.flav-pic {
+	height: 80vh;
+	width: auto;
+}
+
+.flav-line {
+	width: 80%;
+}
+
+.flavour p {
+	font-size: 50px;
+}
+
+.flav-nutritions {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.flav-nutritions p {
+	padding-right: 20px;
+}
+
+.flavour button {
+	margin-top: 90px;
+	width: 100%;
+}
+
+.line {
+	height: 3px;
+	margin: 20px 0;
+}
+
+.amount {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.amount button {
+    font-size: 30px;
+    padding: 10px 10px;
+    margin: 0 10px;
+    border: none;
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+}
+
+.amount p {
+    border: none;
+    background-color: #f7f5f4;
+    cursor: pointer;
+    font-size: 38px;
+    padding: 10px 30px;
+    border-radius: 18px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    margin: 20px 0;
+    font-family: "montserrat", sans-serif;
+    font-weight: 500;
+    color: #000;
+}
+
+.add-to-cart button {
+    border: none;
+    background-color: #f7f5f4;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px 30px;
+    border-radius: 18px;
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+    margin: 20px 0;
+    font-family: "montserrat", sans-serif;
+    font-weight: 500;
+    color: #000;
+}
+
+.amount-and-cart {
+    display: flex;
+    flex-direction: row;
+}
+
+.flavour-container .flavour .flav-desc {
+    font-weight: 300;
+}
+</style>
