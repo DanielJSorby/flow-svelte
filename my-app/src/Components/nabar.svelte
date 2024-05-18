@@ -58,33 +58,35 @@
 
     export let color = '#fff';
     export let linkColor = color;
+    /* const allFlavours = document.getElementById('all-flavours'); */
 
-    if (changeColor) {
     onMount(() => {
-        const handleScroll = () => {
-        const scrollHeight = window.pageYOffset + navHeight/2 ;
-        const windowHeight = window.innerHeight;
+        if (changeColor) {
+            const handleScroll = () => {
+                const scrollHeight = window.pageYOffset + navHeight/2 ;
+                const windowHeight = window.innerHeight;
 
-        if (scrollHeight < windowHeight) {
-            color = '#fff';
-            linkColor = color;
-            console.log('top');
-        } else if (scrollHeight < 2 * windowHeight) {
-            color = '#6A8C65';
-            linkColor = color;
-            console.log('middle');
-        } else if (scrollHeight < 3 * windowHeight) {
-            color = '#FFFABA';
-            linkColor = color;
-            console.log('bottom');
+                if (scrollHeight < windowHeight) {
+                    color = '#fff';
+                    linkColor = color;
+                    console.log('top');
+                } else if (scrollHeight < 2 * windowHeight) {
+                    color = '#6A8C65';
+                    linkColor = color;
+                    console.log('middle');
+                } else if (scrollHeight < 3 * windowHeight) {
+                    color = '#FFFABA';
+                    linkColor = color;
+                    console.log('bottom');
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
         }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-
-        return () => {
-        window.removeEventListener('scroll', handleScroll);
-        };
     });
-}
+
 </script>

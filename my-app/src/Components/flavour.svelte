@@ -1,5 +1,5 @@
 <script>
-    import { onMount } from 'svelte';
+import { onMount } from 'svelte';
     export let flavour;
     import { selectedFlavour } from '../lib/store.js'; // Import the store
     let currentFlavour;

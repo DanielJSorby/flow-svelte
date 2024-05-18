@@ -5,7 +5,7 @@
     import Flavour from '../../Components/flavour.svelte';
     import { selectedFlavour } from '../../lib/store.js';
     import '/src/global.css';
-
+    
     onMount(() => {
         selectedFlavour.set('Flavours');
     });

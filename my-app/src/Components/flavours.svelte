@@ -58,8 +58,10 @@
     onMount(async () => {
     fetchFlavours();
 }); */
-</script>
 
+let allFlavours;
+</script>
+<div class="all-flavours" id="all-flavours" bind:this={allFlavours}>
 {#each flavours as flavour (flavour.name)}
     <div class="flavour-container {flavour.name}" style="background-color: {flavour.mainColor}; color: {flavour.secondColor}">
         <div class="flavour">
@@ -89,9 +91,16 @@
         </div>
     </div>
 {/each}
-
+</div>
 <style>
-    .flavour-container {
+.all-flavours {
+	scroll-snap-type: y mandatory;
+	overflow-y: scroll;
+	height: 100vh;
+}
+
+.flavour-container {
+	scroll-snap-align: start;
 	width: 100%;
 	height: 100vh;
 	display: flex;
