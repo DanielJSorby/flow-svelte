@@ -46,7 +46,9 @@
 		"description": "Crafted with attention to detail to deliver an unparalleled taste experience. Inspired by the sun-drenched orchards of Sicily and the rugged beauty of the Australian Outback, this blend offers a tantalizing journey of flavor exploration."
 	}];
 
-	localStorage.setItem('flavours', JSON.stringify(flavours));
+	if (typeof window !== 'undefined') {
+        localStorage.setItem('flavours', JSON.stringify(flavours));
+    }
 
     /* async function fetchFlavours() {
         const response = await fetch("../lib/flavours.json"); 
@@ -58,10 +60,8 @@
     onMount(async () => {
     fetchFlavours();
 }); */
-
-let allFlavours;
 </script>
-<div class="all-flavours" id="all-flavours" bind:this={allFlavours}>
+<div class="all-flavours" id="all-flavours">
 {#each flavours as flavour (flavour.name)}
     <div class="flavour-container {flavour.name}" style="background-color: {flavour.mainColor}; color: {flavour.secondColor}">
         <div class="flavour">

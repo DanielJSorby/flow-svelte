@@ -32,6 +32,19 @@ import { onMount } from 'svelte';
     function goBack() {
         selectedFlavour.set('Flavours'); // Set selectedFlavour back to 'Flavours'
     }
+
+    function addToCart() {
+        if (typeof window !== 'undefined') {
+            let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+            const itemIndex = cart.findIndex(item => item.name === currentFlavour.name);
+            if (itemIndex > -1) {
+                cart[itemIndex].amount += amount;
+            } else {
+                cart.push({ name: currentFlavour.name, amount, image: currentFlavour.image, price: currentFlavour.price});
+            }
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }
 </script>
 
 {#if currentFlavour}
@@ -63,7 +76,7 @@ import { onMount } from 'svelte';
                         <p>{amount}</p>
                         <button class="add" on:click={addAmount}>+</button>
                     </div>
-                    <div class="add-to-cart"><button>Add to cart &check;</button></div>
+                    <div class="add-to-cart"><button on:click={addToCart}>Add to cart &check;</button></div>
                 </div>
             </div>
         </div>
