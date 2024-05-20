@@ -29,6 +29,11 @@
     let totalPrice = 0;
 
     $: totalPrice = cart.reduce((total, item) => total + item.price * item.amount, 0);
+
+    function checkOut() {
+        localStorage.setItem('total', JSON.stringify(totalPrice));
+        window.location.href = './checkout';
+    }
 </script>
 
 <Navbar />
@@ -56,6 +61,7 @@
             </div>
             <div class="line"></div>
         {/each}
+        <button id="check-out" on:click={checkOut}>Check Out</button>
     </div>
     <button on:click={clearCart}>Clear Cart</button>
 </div>
@@ -66,6 +72,12 @@
         height: 100%;
         color: #454C5F;
         padding-top: 20vh;
+    }
+    #check-out {
+        background-color: #454C5F;
+        color: #FFFFFF;
+        width: fit-content;
+        margin: 0 auto;
     }
 
     .line {
