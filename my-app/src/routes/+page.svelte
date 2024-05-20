@@ -67,9 +67,25 @@
 
     #home-button {
         position: absolute;
+        /* right: 40%; */
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
         right: 0;
+        text-align: center;
+        width: 500px;
         bottom: 30px;
         background-color: #666F88;
         color: #f7f5f4;
+    }
+
+    #home-button:hover {
+        scale: 1.1;
+        transition: .3s;
+    }
+
+    #home-button:hover::after {
+        scale: 1;
+        transition: .3s;
     }
 </style>
