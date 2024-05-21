@@ -33,7 +33,9 @@ import { onMount } from 'svelte';
         selectedFlavour.set('Flavours'); // Set selectedFlavour back to 'Flavours'
     }
 
+    let addedToCart = false;
     function addToCart() {
+        addedToCart = true;
         if (typeof window !== 'undefined') {
             let cart = JSON.parse(localStorage.getItem('cart') || '[]');
             const itemIndex = cart.findIndex(item => item.name === currentFlavour.name);
@@ -76,7 +78,15 @@ import { onMount } from 'svelte';
                         <p>{amount}</p>
                         <button class="add" on:click={addAmount}>+</button>
                     </div>
-                    <div class="add-to-cart"><button on:click={addToCart}>Add to cart &check;</button></div>
+                    <div class="add-to-cart">
+                        <button on:click={addToCart}>
+                            {#if addedToCart}
+                                Added to cart
+                            {:else}
+                                Add to cart &check;
+                            {/if}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -102,7 +112,15 @@ import { onMount } from 'svelte';
                         <p>{amount}</p>
                         <button class="add" on:click={addAmount}>+</button>
                     </div>
-                    <div class="add-to-cart"><button>Add to cart &check;</button></div>
+                    <div class="add-to-cart">
+                        <button on:click={addToCart}>
+                            {#if addedToCart}
+                                Added to cart
+                            {:else}
+                                Add to cart &check;
+                            {/if}
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -120,6 +138,11 @@ import { onMount } from 'svelte';
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.add-to-cart button:active {
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+    transform: translateY(3px);
 }
 
 .flavour p {
