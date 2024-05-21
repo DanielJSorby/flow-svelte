@@ -32,7 +32,7 @@
 
     function checkOut() {
         localStorage.setItem('total', JSON.stringify(totalPrice));
-        window.location.href = './checkout';
+        window.location.href = './cart/checkout';
     }
 </script>
 
@@ -69,7 +69,7 @@
 <style>
     .body {
         background-color: #454C5F;
-        height: 100%;
+        height: fit-content;
         color: #454C5F;
         padding-top: 20vh;
     }
@@ -78,6 +78,7 @@
         color: #FFFFFF;
         width: fit-content;
         margin: 0 auto;
+        margin-top: 40px;
     }
 
     .line {

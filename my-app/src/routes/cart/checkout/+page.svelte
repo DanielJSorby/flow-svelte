@@ -4,7 +4,7 @@
 
 <div class="body">
     <div class="back-to-cart">
-        <a href="./cart">
+        <a href="../cart">
             <p>&lt; Cart</p>
         </a>
     </div>
