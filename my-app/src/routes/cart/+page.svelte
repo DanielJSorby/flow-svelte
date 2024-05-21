@@ -70,6 +70,7 @@
     .body {
         background-color: #454C5F;
         height: fit-content;
+        min-height: 100%;
         color: #454C5F;
         padding-top: 20vh;
     }
