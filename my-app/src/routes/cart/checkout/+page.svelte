@@ -75,7 +75,9 @@
               
         </div>
     </div>
-    <button id="order">Confirm Order</button>
+    <a href="/">
+        <button id="order">Confirm Order</button>
+    </a>
 </div>
 
 <style>
@@ -114,7 +116,7 @@
 
     input[type='radio'] { 
         transform: scale(2);
-        accent-color: #666F88;
+        accent-color: #5093FE;
     }
 
     .back-to-cart a {
@@ -122,7 +124,7 @@
     }
 
     #order {
-        background-color: #666F88;
+        background-color: #5093FE;
         color: white;
     }
 
