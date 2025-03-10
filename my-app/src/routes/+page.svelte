@@ -11,8 +11,8 @@
             <h1>Enter <br>Your <span class="text-light-blue">Zone.</span></h1>
         </div>
         <div class="bottles-container">
-            <img src="src/images/Bottles/Cadoflower+.png" alt="A bottle of the flavour Cadoflower" class="bottle" id="bottle1">
-            <img src="src/images/Bottles/Bloody Ginger.png" alt="A bottle of the flavour Bloody Ginger" class="bottle" id="bottle2">
+            <img src="images/Bottles/Cadoflower+.png" alt="A bottle of the flavour Cadoflower" class="bottle" id="bottle1">
+            <img src="images/Bottles/Bloody Ginger.png" alt="A bottle of the flavour Bloody Ginger" class="bottle" id="bottle2">
         </div>
     </div>
     <a href="./Flavours/">
